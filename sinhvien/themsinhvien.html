@@ -47,59 +47,6 @@
             padding: 20px;
         }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-            margin-bottom: 30px;
-        }
-
-        .search-bar {
-            padding: 8px 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            width: 300px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            padding: 8px 15px;
-            border-radius: 4px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background-color: #1a73e8;
-            color: white;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 50px;
-        }
-
-        .empty-state img {
-            width: 300px; 
-            margin-bottom: 20px;
-        }
-
-        .empty-state h2 {
-            color: #333;
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .empty-state p {
-            color: #666;
-            font-size: 14px;
-        }
-
         .form-group {
             display: flex;
             flex-direction: column;
@@ -112,10 +59,6 @@
             width: 60%; 
             padding: 8px;
             margin-top: 5px;
-        }
-
-        .form-group select {
-            width: 60%; 
         }
 
         .form-group-password {
@@ -140,7 +83,7 @@
 <body>
     <div class="sidebar">
         <div class="logo">
-            <img src="C:\Users\tungg\Pictures\Icon-Dai-hoc-CMC.webp" alt="Logo">
+            <img src="C:\\Users\\tungg\\Documents\\qlysinhvien\\Icon-Dai-hoc-CMC.webp" alt="Logo">
         </div>
         <a href="#" class="menu-item">Bảng điều khiển</a>
         <a href="#" class="menu-item">Giáo viên</a>
@@ -151,10 +94,6 @@
     </div>
 <div class="main-content">
     <h2 style="font-family: Arial, sans-serif;">Thêm Sinh Viên</h2>
-    <div class="tabs" style="margin-bottom: 20px;">
-        <button class="tab">Thủ công</button>
-        <button class="tab">Nhập CSV</button>
-    </div>
     <form class="add-student-form">
         <div class="form-group">
             <label for="name">Tên</label>
@@ -176,7 +115,6 @@
                 <option value="">Chọn giới tính</option>
                 <option value="Nam">Nam</option>
                 <option value="Nữ">Nữ</option>
-                <option value="Bí mật">Bí mật</option>
             </select>
         </div>
         <div class="form-group">
@@ -195,27 +133,65 @@
             </div>
         </div>
         <div class="form-actions" style="margin-top: 20px;">
-            <button type="button" class="add-another" style="margin-right: 10px;">Thêm khác</button>
             <button type="submit" class="btn btn-primary">Thêm sinh viên</button>
         </div>
     </form>
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('.add-student-form');
         const passwordInput = document.getElementById('password');
         const togglePasswordButton = document.getElementById('togglePasswordButton');
 
         togglePasswordButton.addEventListener('click', function() {
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                togglePasswordButton.textContent = 'Ẩn';
-            } else {
-                passwordInput.type = 'password';
-                togglePasswordButton.textContent = 'Hiện';
+            passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+            togglePasswordButton.textContent = passwordInput.type === 'password' ? 'Hiện' : 'Ẩn';
+        });
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const classValue = document.getElementById('class').value;
+            const gender = document.getElementById('gender').value;
+
+            if (!name.match(/^[a-zA-Z\s]+$/)) {
+                alert('Tên chỉ được chứa chữ cái và khoảng trắng.');
+                return;
             }
+            if (!email.includes('@gmail.com')) {
+                alert('Email phải chứa @gmail.com');
+                return;
+            }
+            if (!phone.match(/^\d{1,11}$/)) {
+                alert('Số điện thoại chỉ được chứa số và tối đa 11 chữ số.');
+                return;
+            }
+            if (!name || !email || !phone || !classValue || !gender) {
+                alert('Vui lòng điền đầy đủ thông tin.');
+                return;
+            }
+
+            alert('Thêm sinh viên thành công!');
+
+            
+            let students = JSON.parse(localStorage.getItem("students")) || [];
+
+            
+            let studentID = "BIT" + (students.length + 1).toString().padStart(5, "0");
+
+            
+            const newStudent = { name, id: studentID, email, classValue, gender };
+            students.push(newStudent);
+
+            
+            localStorage.setItem("students", JSON.stringify(students));
+
+            
+            window.location.href = 'danhsachsv.html';
         });
     });
 </script>
 </body>
 </html>
-

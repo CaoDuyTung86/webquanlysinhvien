@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #1a237e;
+            color: white;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        .logo {
+            padding: 0 20px;
+            margin-bottom: 30px;
+        }
+        .logo img {
+            width: 40px;
+        }
+        .menu-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            padding: 20px;
+            flex-direction: column;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .search-bar {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 250px;
+        }
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+        }
+        .btn-green {
+            background-color: #4CAF50;
+        }
+        .btn-gray {
+            background-color: #757575;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background-color: #e0e0e0;
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th:first-child {
+            border-right: 1px solid #aaa;
+        }
+        td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+            background-color: white;
+        }
+        tr:hover {
+            background-color: #e0e0e0;
+            cursor: pointer;
+        }
+        .content-container {
+            display: flex;
+        }
+        .left-panel {
+            flex: 1;
+        }
+        .right-panel {
+            width: 300px;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="C:\\Users\\tungg\\Desktop\\qlysinhvien\\Icon-Dai-hoc-CMC.webp" alt="Logo">
+        </div>
+        <a href="#" class="menu-item">Bảng điều khiển</a>
+        <a href="#" class="menu-item">Giáo viên</a>
+        <a href="#" class="menu-item active">Sinh viên</a>
+        <a href="#" class="menu-item">Thanh toán</a>
+        <a href="#" class="menu-item">Cài đặt và hồ sơ</a>
+        <a href="#" class="menu-item">Kỳ thi</a>
+        <a href="#" class="menu-item">Quản lý điểm</a>
+    </div>
+    
+    <div class="main-content">
+        <div class="search-container">
+            <input type="search" class="search-bar" id="searchInput" placeholder="Tìm kiếm sinh viên theo tên" onkeyup="filterStudents()">
+            <button class="btn btn-gray">Xuất CSV</button>
+            <button class="btn btn-green" onclick="window.location.href='themsinhvien.html'">Thêm sinh viên</button>
+            <button class="btn btn-gray" id="editButton" onclick="toggleEditMode()">Chỉnh sửa</button>
+        </div>
+        <div class="content-container">
+            <div class="left-panel">
+                <table id="studentTable">
+                    <tr>
+                        <th>Họ và tên</th>
+                        <th>Mã SV</th>
+                    </tr>
+                    <tr onclick="showDetails('Nguyễn Văn A', 'BIT12345', 'nguyenvana@gmail.com', '23IT1', 'Nam', '21')">
+                        <td>Nguyễn Văn A</td>
+                        <td>BIT12345</td>
+                    </tr>
+                    <tr onclick="showDetails('Lê Thị B', 'BIT34567', 'lethib@gmail.com', '23IT2', 'Nữ', '20')">
+                        <td>Lê Thị B</td>
+                        <td>BIT34567</td>
+                    </tr>
+                    <tr onclick="showDetails('Trần Bảo C', 'BIT23456', 'tranbaoc@gmail.com', '23IT3', 'Nam', '19')">
+                        <td>Trần Bảo C</td>
+                        <td>BIT23456</td>
+                    </tr>
+                    <tr onclick="showDetails('Cao Khánh D', 'BIT45678', 'caokhanhd@gmail.com', '23IT4', 'Nam', '20')">
+                        <td>Cao Khánh D</td>
+                        <td>BIT45678</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="right-panel" id="studentDetails">
+                <h2 id="studentName"></h2>
+                <p id="studentInfo"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterStudents() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let table = document.getElementById('studentTable');
+            let tr = table.getElementsByTagName('tr');
+            
+            for (let i = 1; i < tr.length; i++) {
+                let tdName = tr[i].getElementsByTagName('td')[0];
+                if (tdName) {
+                    let nameValue = tdName.textContent.toLowerCase();
+                    if (nameValue.includes(input)) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function showDetails(name, id, email, studentClass, gender, age) {
+            document.getElementById('studentName').innerText = name;
+            document.getElementById('studentInfo').innerHTML = `Mã SV: ${id} <br> Email: ${email} <br> Lớp: ${studentClass} <br> Giới tính: ${gender} <br> Tuổi: ${age}`;
+            document.getElementById('studentDetails').style.display = "block";
+        }
+    </script>
+    <script>
+        let isEditMode = false; // Trạng thái hiển thị nút Xóa
+    
+        document.addEventListener("DOMContentLoaded", function () {
+            loadStudentsFromLocalStorage();
+        });
+    
+        function toggleEditMode() {
+            isEditMode = !isEditMode;
+            document.querySelectorAll(".delete-btn").forEach(btn => {
+                btn.style.display = isEditMode ? "inline-block" : "none";
+            });
+        }
+    
+        function loadStudentsFromLocalStorage() {
+            let storedStudents = JSON.parse(localStorage.getItem("students")) || [];
+            let table = document.getElementById("studentTable");
+    
+            // Xóa các hàng cũ, nhưng giữ lại tiêu đề
+            let headerRow = table.rows[0].outerHTML;
+            table.innerHTML = headerRow;
+    
+            let existingIDs = new Set(); // Tạo danh sách ID sinh viên để tránh trùng lặp
+    
+            // Duyệt qua danh sách sinh viên từ HTML ban đầu và thêm vào Set
+            let rows = Array.from(document.querySelectorAll("#studentTable tr:not(:first-child)"));
+            rows.forEach(row => {
+                let id = row.cells[1].textContent;
+                existingIDs.add(id);
+            });
+    
+            // Thêm sinh viên từ localStorage, tránh trùng lặp
+            storedStudents.forEach(student => {
+                if (!existingIDs.has(student.id)) {
+                    let row = table.insertRow();
+                    row.onclick = function () { 
+                        showDetails(student.name, student.id, student.email || "N/A", student.classValue || "N/A", student.gender || "N/A"); 
+                    };
+    
+                    let cell1 = row.insertCell(0);
+                    let cell2 = row.insertCell(1);
+                    let cell3 = row.insertCell(2); 
+    
+                    cell1.textContent = student.name;
+                    cell2.textContent = student.id;
+    
+                   
+                    let deleteBtn = document.createElement("button");
+                    deleteBtn.textContent = "Xóa";
+                    deleteBtn.classList.add("delete-btn");
+                    deleteBtn.style.color = "white";
+                    deleteBtn.style.backgroundColor = "red";
+                    deleteBtn.style.border = "none";
+                    deleteBtn.style.padding = "5px 10px";
+                    deleteBtn.style.cursor = "pointer";
+                    deleteBtn.style.display = "none"; 
+    
+                    deleteBtn.onclick = function (event) {
+                        event.stopPropagation(); 
+                        deleteStudent(student.id);
+                    };
+    
+                    cell3.appendChild(deleteBtn);
+                    existingIDs.add(student.id);
+                }
+            });
+        }
+    
+        function showDetails(name, id, email, studentClass, gender) {
+            document.getElementById('studentName').innerText = name;
+            document.getElementById('studentInfo').innerHTML = `Mã SV: ${id} <br> Email: ${email} <br> Lớp: ${studentClass} <br> Giới tính: ${gender}`;
+            document.getElementById('studentDetails').style.display = "block";
+        }
+    
+        function deleteStudent(studentID) {
+            if (confirm("Bạn có chắc chắn muốn xóa sinh viên này?")) {
+                let students = JSON.parse(localStorage.getItem("students")) || [];
+                students = students.filter(student => student.id !== studentID);
+                localStorage.setItem("students", JSON.stringify(students));
+                loadStudentsFromLocalStorage();
+            }
+        }
+    </script>
+    
+</body>
+</html>
