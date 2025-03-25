@@ -14,32 +14,39 @@
 
         .sidebar {
             width: 250px;
-            background-color: #1a237e;
+            background-color: #0f1c3f;
             color: white;
             min-height: 100vh;
             padding: 20px 0;
+            text-align: center;
         }
-
-        .logo {
-            padding: 0 20px;
-            margin-bottom: 30px;
+        .sidebar h2 {
+            font-size: 18px;
+            margin: 0;
+            padding-bottom: 20px;
+            font-weight: bold;
         }
-
+        
         .logo img {
-            width: 40px;
+            width: 80px;
+            margin-bottom: 10px;
         }
 
         .menu-item {
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            display: block;
             color: white;
             text-decoration: none;
+            padding: 10px 0;
+            font-size: 16px;
+            transition: background 0.3s;
         }
 
-        .menu-item.active {
-            background-color: #3949ab;
+        .menu-item:hover {
+            background-color: #1e2f5c;
+        }
+
+        .active {
+            font-weight: bold;
         }
 
         .main-content {
@@ -83,14 +90,19 @@
 <body>
     <div class="sidebar">
         <div class="logo">
-            <img src="C:\\Users\\tungg\\Documents\\qlysinhvien\\Icon-Dai-hoc-CMC.webp" alt="Logo">
+            <img src="C:\Users\tungg\Desktop\qlysinhvien\logo (2).png" alt="Logo">
         </div>
+        <h2>Trường</h2>
         <a href="#" class="menu-item">Bảng điều khiển</a>
         <a href="#" class="menu-item">Giáo viên</a>
-        <a href="#" class="menu-item active">Sinh viên</a>
+        <a href="#" class="menu-item">Quản lý giáo viên</a>
+        <a href="#" class="menu-item">Danh sách giáo viên</a>
+        <a href="#" class="menu-item">Thông tin chi tiết</a>
+        <a href="#" class="menu-item">Học sinh / Lớp học</a>
         <a href="#" class="menu-item">Thanh toán</a>
-        <a href="#" class="menu-item">Cài đặt và hồ sơ</a>
-        <a href="#" class="menu-item">Kỳ thi</a>
+        <a href="#" class="menu-item">Cài đặt & Hồ sơ</a>
+        <a href="#" class="menu-item">Kiểm tra</a>
+        <a href="#" class="menu-item">Tính năng</a>
     </div>
 <div class="main-content">
     <h2 style="font-family: Arial, sans-serif;">Thêm Sinh Viên</h2>
@@ -134,6 +146,7 @@
         </div>
         <div class="form-actions" style="margin-top: 20px;">
             <button type="submit" class="btn btn-primary">Thêm sinh viên</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='danhsachsv.html'">Quay lại</button>
         </div>
     </form>
 </div>
