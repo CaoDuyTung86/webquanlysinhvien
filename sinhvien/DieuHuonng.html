@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng Điều Khiển Giáo Viên</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .teacher-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .teacher-table th, .teacher-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .teacher-table th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <!-- Thanh bên -->
+    <div class="sidebar">
+        <img src="./qlysinhvien/logo (2).png" alt="Logo" class="logo">
+        <h2>Trường</h2>
+        <nav>
+            <ul>
+                <li>Bảng điều khiển</li>
+        <a href="./tq.html"> <li class="teacher-menu">Giáo viên</li></a>
+                <ul class="submenu" id="teacher-submenu">
+         <a href="./t.html"> <li>Quản lý giáo viên</li></a>
+                   <a href="./tt.html"> <li>Danh sách giáo viên</li></a>
+                   <a href="./DieuHuonng.html">  <li>Thông tin chi tiết</li></a>
+    
+                </ul>
+                <li>Học sinh / Lớp học</li>
+                <li>Thanh toán</li>
+                <li>Cài đặt & Hồ sơ</li>
+                <li>Kiểm tra</li>
+                <li>Tính năng</li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Nội dung chính -->
+    <div class="main-content">
+        <header>
+            <div class="header-left">
+                <h2>Bảng Điều Khiển Giáo Viên</h2>
+            </div>
+            <div class="header-right">
+                <a href="t.html"><button class="add-btn">Thêm giáo viên</button></a>
+                <i class="fa fa-bell notification-icon"></i>
+                <span class="logout">Đăng xuất</span>
+            </div>
+        </header>
+        
+        <!-- Bảng thống kê giáo viên -->
+        <div class="teacher-dashboard">
+            <table class="teacher-table">
+                <thead>
+                    <tr>
+                        <th>Tên giáo viên</th>
+                        <th>Môn học</th>
+                        <th>Lớp đang dạy</th>
+                        <th>Trạng thái</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody id="teacher-list">
+                    <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="teacherSchedule.js"></script>
+
+</body>
+</html>

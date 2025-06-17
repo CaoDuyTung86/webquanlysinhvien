@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách giáo viên</title>
+    <link rel="stylesheet" href="styles.css">
+  
+
+
+
+</head>
+<body>
+    
+<!-- Thanh bên -->
+<div class="sidebar">
+    <img src="./qlysinhvien/logo (2).png" alt="Logo" class="logo">
+    <h2>Trường</h2>
+    <nav>
+        <ul>
+            <li>Bảng điều khiển</li>
+    <a href="./tq.html"> <li class="teacher-menu">Giáo viên</li></a>
+            <ul class="submenu" id="teacher-submenu">
+     <a href="./t.html"> <li>Quản lý giáo viên</li></a>
+               <a href="./tt.html"> <li>Danh sách giáo viên</li></a>
+               <a href="./DieuHuonng.html">  <li>Thông tin chi tiết</li></a>
+
+            </ul>
+            <li>Học sinh / Lớp học</li>
+            <li>Thanh toán</li>
+            <li>Cài đặt & Hồ sơ</li>
+            <li>Kiểm tra</li>
+            <li>Tính năng</li>
+        </ul>
+    </nav>
+</div>
+
+    <div class="main-content">
+        <header>
+            <div class="header-left">
+                <h2>Giáo viên</h2>
+            </div>
+            <div class="header-right">
+                
+                <a href="./t.html">  <button class="add-btn">Thêm giáo viên</button></a>
+                
+                <i class="fa fa-bell notification-icon"></i>
+                <span class="logout">Đăng xuất</span>
+            </div>
+        </header>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Tìm kiếm giáo viên theo tên hoặc email">
+        </div>
+        <table class="teacher-table">
+            <thead>
+                <tr>
+                    <th>Tên</th>
+                    <th>Môn học</th>
+                    <th>Lớp</th>
+                    <th>Địa chỉ email</th>
+                    <th>Giới tính</th>
+                    
+                </tr>
+            </thead>
+            <tbody id="teacher-list">
+                <!-- Danh sách giáo viên sẽ được thêm vào đây bằng JavaScript -->
+            </tbody>
+        </table>
+        
+    </div>
+</body>
+<script src="teacher-list.js"></script>
+</html>
+
+

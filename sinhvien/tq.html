@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết Giáo viên</title>
+    <link rel="stylesheet" href="stylestp.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- Thanh bên -->
+<div class="sidebar">
+    <img src="./qlysinhvien/logo (2).png" alt="Logo" class="logo">
+    <h2>Trường </h2>
+    <nav>
+        <ul>
+            <li>Bảng điều khiển</li>
+            <li class="active">Giáo viên</li>
+            <li>Học sinh / Lớp học</li> <a href="./qlysinhvien/quanlysinhvien.html"></a>
+            <li>Thanh toán</li>
+            <li>Cài đặt & Hồ sơ</li>
+            <li>Kiểm tra</li>
+            <li>Tính năng</li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Nội dung chính -->
+<div class="main-content">
+    
+    <!-- Tiêu đề -->
+    <header>
+        <div class="header-left">
+            Chi tiết Giáo viên
+        </div>
+        <div class="header-right">
+  
+            
+            <a href="./t.html"><button class="add-btn">Thêm giáo viên</button></a>
+            
+            <i class="fa fa-bell notification-icon"></i>
+            <span class="logout">Đăng xuất</span>
+        </div>
+    </header>
+
+    <!-- Kiểm tra nếu không có giáo viên nào -->
+    <div class="no-teachers">
+    
+        <h2>Chưa có giáo viên nào</h2>
+        <p>Giáo viên sẽ xuất hiện ở đây sau khi được thêm vào hệ thống.</p>
+        <a href="./t.html"><button class="add-btn">Thêm giáo viên</button></a>
+    </div>
+</div>
+
+<!-- Nút hỗ trợ gọi điện -->
+<div class="support-button" onclick="callSupport()">
+    <span>📞 Hỗ trợ</span>
+</div>
+
+<script>
+    function callSupport() {
+        window.location.href = "tel:+84123456789"; // Thay so
+    }
+</script>
+
+</body>
+</html>

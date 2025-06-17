@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin chi tiết Giáo Viên</title>
+    <link rel="stylesheet" href="styless.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+<!-- Thanh bên -->
+<div class="sidebar">
+    <img src="./qlysinhvien/logo (2).png" alt="Logo" class="logo">
+    <h2>Trường</h2>
+    <nav>
+        <ul>
+            <li>Bảng điều khiển</li>
+    <a href="./tq.html"> <li class="teacher-menu">Giáo viên</li></a>
+            <ul class="submenu" id="teacher-submenu">
+     <a href="./t.html"> <li>Quản lý giáo viên</li></a>
+               <a href="./tt.html"> <li>Danh sách giáo viên</li></a>
+               <a href="./ttt.html">  <li>Thông tin chi tiết</li></a>
+
+            </ul>
+           <a href="./qlysinhvien/quanlysinhvien.html"> <li>Học sinh / Lớp học</li> </a>
+            <li>Thanh toán</li>
+            <li>Cài đặt & Hồ sơ</li>
+            <li>Kiểm tra</li>
+            <li>Tính năng</li>
+        </ul>
+    </nav>
+</div>
+
+    <div class="main-content">
+        <header>
+            <div class="header-left">
+                <h2>Giáo viên</h2>
+                <input type="text" class="search-bar" placeholder="Tìm kiếm giáo viên...">
+            </div>
+            <div class="header-right">
+                <button class="add-btn">Thêm giáo viên</button>
+                <i class="fa fa-bell notification-icon"></i>
+                <span class="logout">Đăng xuất</span>
+            </div>
+        </header>
+
+        <div class="teacher-content">
+            <div class="teacher-image">
+                <label for="upload-photo" class="upload-label">+
+                    <input type="file" id="upload-photo" accept="image/*" hidden onchange="previewImage(event)">
+                </label>
+                <img id="teacher-photo" src="./teacher-placeholder.png" alt="Giáo viên">
+            </div>
+            <div class="teacher-info">
+                <h3>Thông tin giáo viên</h3>
+                <input type="text" id="teacher-name" placeholder="Tên giáo viên">
+                <input type="text" id="teacher-subject" placeholder="Môn dạy">
+                <input type="text" id="teacher-experience" placeholder="Kinh nghiệm">
+                <button id="save-btn" onclick="saveTeacherInfo()">Lưu</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                document.getElementById('teacher-photo').src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function saveTeacherInfo() {
+            document.getElementById('save-btn').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #1a2a4a;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+}
+
+.sidebar nav ul li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.sidebar nav ul .active {
+    background: #1d3c6a;
+    border-radius: 5px;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.header-left {
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-bar {
+    margin-top: 10px;
+    padding: 8px;
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.add-btn {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    background: #3498db;
+    color: white;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.notification-icon {
+    font-size: 18px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.logout {
+    margin-left: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.logo {
+    display: block;
+    width: 80px;
+    margin: 0 auto 10px;
+}
+
+/* Teacher Content */
+.teacher-content {
+    display: flex;
+    margin-top: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.teacher-image {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload-label {
+    font-size: 30px;
+    cursor: pointer;
+    color: #3498db;
+}
+
+.teacher-image img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+}
+
+.teacher-info {
+    flex: 1;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.teacher-info input {
+    margin: 5px 0;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#save-btn {
+    padding: 10px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+</style>
