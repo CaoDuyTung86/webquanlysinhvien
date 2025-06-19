@@ -32,7 +32,7 @@ pipeline {
 
         stage('Done') {
             steps {
-                echo '✅ Pipeline complete!'
+                echo 'Pipeline complete!'
             }
         }
     }
