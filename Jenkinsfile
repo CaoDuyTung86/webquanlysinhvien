@@ -17,7 +17,7 @@ pipeline {
             steps {
                 withSonarQubeEnv("${SONARQUBE}") {
                     tool name: "${SCANNER}", type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                    bat "${tool "${SCANNER}"}/bin/sonar-scanner -Dsonar.projectKey=webquanlysinhvien -Dsonar.sources=src -Dsonar.java.binaries=."
+                    bat "${tool "${SCANNER}"}/bin/sonar-scanner -Dsonar.projectKey=webquanlysinhvien -Dsonar.sources=sinhvien -Dsonar.java.binaries=."
                 }
             }
         }
