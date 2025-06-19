@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        SONARQUBE = 'SonarQube' // Tên cấu hình trong Jenkins
-        SCANNER = 'sonar-scanner' // Tên bạn đặt cho tool scanner
+        SONARQUBE = 'SonarQube' 
+        SCANNER = 'sonar-scanner' 
     }
 
     stages {
